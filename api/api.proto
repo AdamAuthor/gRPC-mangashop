@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option go_package = "worked-gRPC-mangashop/api";
+package api;
+
+service ServiceCRUD {
+  rpc CreateManga (Manga) returns (Id);
+  rpc ReadManga (Id) returns (Manga);
+  rpc ReadAllManga (Empty) returns (stream Manga);
+  rpc UpdateManga (Manga) returns (Status);
+  rpc DeleteManga (Id) returns (Status);
+}
+
+message Manga {
+  int64 id = 1;
+  string name = 2;
+  repeated string genre = 3;
+  string cover = 4;
+  int64 price = 5;
+}
+
+message Id {
+  int64 id = 1;
+}
+
+message Empty {
+
+}
+
+message Status {
+  int64 value = 1;
+}
